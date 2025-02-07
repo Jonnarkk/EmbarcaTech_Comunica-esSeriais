@@ -32,7 +32,7 @@ void botao_callback(uint gpio, uint32_t events){
     static absolute_time_t last_press = 0;
     absolute_time_t agora = get_absolute_time();
 
-    if(absolute_time_diff_us(last_press, agora) > debounce_delay * 1e+3){
+    if(absolute_time_diff_us(last_press, agora) > debounce_delay * 1e+3){ // Faz o tratamento do bouncing
         if(gpio == botaoA){
             botaoA_pressionado = !botaoA_pressionado;
             gpio_put(green_pin, botaoA_pressionado);
@@ -129,23 +129,23 @@ int main(){
     stdio_init_all();
 
     while (true) {
-        if(stdio_usb_connected()){
-            char caracter = getchar();
+        if(stdio_usb_connected()){ // Verifica se o USB foi conectado
+            char caracter = getchar(); // Lê caracter do monitor serial
 
-            if(isdigit(caracter)){
-                mostrar_num(caracter, pio, sm);
+            if(isdigit(caracter)){ // Verifica se foi um número ou caracter digitado
+                mostrar_num(caracter, pio, sm); // Imprime número na matriz de LED's
                 printf("Número: %c\n", caracter);
 
-                ssd1306_fill(&ssd, false);
-                ssd1306_draw_char(&ssd, caracter, 64, 32);
+                ssd1306_fill(&ssd, false); 
+                ssd1306_draw_char(&ssd, caracter, 64, 32); // Imprime no display
                 ssd1306_send_data(&ssd);
             }
             else{
                 printf("Caracter: %c\n", caracter);
-                limpar_todos_leds(pio, sm);
+                limpar_todos_leds(pio, sm); // Desliga LED's da matriz
 
                 ssd1306_fill(&ssd, false);
-                ssd1306_draw_char(&ssd, caracter, 64, 32);
+                ssd1306_draw_char(&ssd, caracter, 64, 32); // Imprime no display
                 ssd1306_send_data(&ssd);
             }
         }
