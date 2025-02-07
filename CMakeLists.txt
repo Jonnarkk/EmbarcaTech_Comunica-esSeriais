@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(EmbarcaTech_comunicacoesSeriais EmbarcaTech_comunicacoesSeriais.c arquivosC/led_matriz.c)
+add_executable(EmbarcaTech_comunicacoesSeriais EmbarcaTech_comunicacoesSeriais.c arquivosC/led_matriz.c arquivosC/ssd1306.c arquivosC/numeros.c)
 
 pico_set_program_name(EmbarcaTech_comunicacoesSeriais "EmbarcaTech_comunicacoesSeriais")
 pico_set_program_version(EmbarcaTech_comunicacoesSeriais "0.1")
@@ -51,6 +51,7 @@ pico_generate_pio_header(EmbarcaTech_comunicacoesSeriais ${CMAKE_CURRENT_LIST_DI
 target_link_libraries(EmbarcaTech_comunicacoesSeriais
         hardware_clocks
         hardware_pio
+        hardware_i2c
         pico_stdlib)
 
 # Add the standard include files to the build
