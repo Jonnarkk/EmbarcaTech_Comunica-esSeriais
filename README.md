@@ -21,7 +21,7 @@ O código está organizado em diversas funções, dentre as quais vale a pena me
 - `void mostrar_num(char caracter, PIO pio, uint sm)`: Apresenta o número digitado no monitor serial na matriz 5x5 de LED's.
 
 ## Estrutura dos arquivos
-
+```
 project/
 │
 ├── arquivosC/
@@ -37,6 +37,7 @@ project/
 ├── EmbarcaTech_comunicacoesSeriais.c
 ├── CMakeLists.txt
 └── README.md
+```
 
 ## Link com o vídeo explicativo
 
